@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+	<style type="text/css">
+	body, html,#allmap {width: 100%;height: 100%;overflow: hidden;margin:0;font-family:"微软雅黑";}
+	</style>
+	<script type="text/javascript" src="http://api.map.baidu.com/api?v=2.0&ak=R7fL6eTdgkBi1na9jkGakzyuBTF496O0"></script>
+	<script type="text/javascript" src="data.js"></script>
+	<title>field intensity data on baidu map</title>
+</head>
+<body>
+	<div id="allmap"></div>
+</body>
+</html>
+<script type="text/javascript">
+	// 百度地图API功能
+	var map = new BMap.Map("allmap");    // 创建Map实例
+	map.centerAndZoom(new BMap.Point(117.119, 36.665), 14);  // 初始化地图,设置中心点坐标和地图级别117.120643, 36.665794
+	map.enableScrollWheelZoom(true);     //开启鼠标滚轮缩放
+	    if (document.createElement('canvas').getContext) {  // 判断当前浏览器是否支持绘制海量点
+		var pointszero=[];  //添加海量点数据
+		var pointsone = [];  
+		var pointstwo=[];
+		var pointsthree = []; 
+		var pointsfour = [];
+		var pointsfive = []; 
+		var pointssix = [];
+		var pointsseven = [];  
+		var pointseight = []; 
+		var pointsnine = [];
+		var pointsten = [];
+		var pointseleven = [];
+		var pointstwelve = []; 
+		var pointsthirteen = []; 
+		var pointsfourteen = []; 
+		var pointsfifteen = []; 
+		var pointssixteen = []; 
+		var pointsseventeen = []; 
+		var pointseighteen = [];
+		
+		var m = data.data[0][3];
+		for(var i=1;i<data.data.length;i++){
+			if(m<data.data[i][3])
+				m=data.data[i][3];}
+		
+		var n = data.data[0][3];
+		for(var i=1;i<data.data.length;i++){
+			if(n>data.data[i][3]&&data.data[i][3]>0)
+				n=data.data[i][3];}
+				
+		for (var i = 0; i < data.data.length; i++) {
+        	if (parseInt(data.data[i][3])<5){
+          pointszero.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        	if (parseInt(data.data[i][3])<10&&parseInt(data.data[i][3])>4){
+          pointsone.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<15&&parseInt(data.data[i][3])>9){
+          pointstwo.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<20&&parseInt(data.data[i][3])>14){
+          pointsthree.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<25&&parseInt(data.data[i][3])>19){
+          pointsfour.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<30&&parseInt(data.data[i][3])>24){
+          pointsfive.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<35&&parseInt(data.data[i][3])>29){
+          pointssix.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<40&&parseInt(data.data[i][3])>34){
+          pointsseven.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<45&&parseInt(data.data[i][3])>39){
+          pointseight.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<50&&parseInt(data.data[i][3])>44){
+          pointsnine.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<55&&parseInt(data.data[i][3])>49){
+          pointsten.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<60&&parseInt(data.data[i][3])>54){
+          pointseleven.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<65&&parseInt(data.data[i][3])>59){
+          pointstwelve.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<70&&parseInt(data.data[i][3])>64){
+          pointsthirteen.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<75&&parseInt(data.data[i][3])>69){
+          pointsfourteen.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<80&&parseInt(data.data[i][3])>74){
+          pointsfifteen.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<85&&parseInt(data.data[i][3])>79){
+          pointssixteen.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<90&&parseInt(data.data[i][3])>84){
+          pointsseventeen.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        if (parseInt(data.data[i][3])<95&&parseInt(data.data[i][3])>89){
+          pointseighteen.push(new BMap.Point(data.data[i][0], data.data[i][1]));
+        }
+        }
+		
+		var optionszero = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(0,0,250,0.8)'
+		}
+		var pointCollectionzero = new BMap.PointCollection(pointszero, optionszero);  // 初始化PointCollection
+		pointCollectionzero.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+				if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+					Level=data.data[i][3];
+					Frequency=data.data[i][2];
+					break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+				width: 0, // 信息窗口宽度
+				height: 0, // 信息窗口高度
+				title:"", // 信息窗口标题
+				enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+		
+		var optionsone = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(2,50,255,0.8)'
+		}
+		var pointCollectionone = new BMap.PointCollection(pointsone, optionsone);  // 初始化PointCollection
+		pointCollectionone.addEventListener('click', function (e) 
+		{
+				var Level="";
+				var Frequency="";
+			for (var i = 0; i < data.data.length; i++) {
+				if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+				Level=data.data[i][3];
+				Frequency=data.data[i][2];
+				break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+				width: 0, // 信息窗口宽度
+				height: 0, // 信息窗口高度
+				title:"", // 信息窗口标题
+				enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionstwo = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(1,100,250,0.8)'
+		}
+		var pointCollectiontwo = new BMap.PointCollection(pointstwo, optionstwo);  // 初始化PointCollection
+		pointCollectiontwo.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+		
+		var optionsthree = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(1,155,255,0.8)'
+		}
+		var pointCollectionthree = new BMap.PointCollection(pointsthree, optionsthree);  // 初始化PointCollection
+
+		pointCollectionthree.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionsfour = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(0,200,255,0.8)'
+		}
+		var pointCollectionfour = new BMap.PointCollection(pointsfour, optionsfour);  // 初始化PointCollection
+
+		pointCollectionfour.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionsfive = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(10,255,255,0.8)'
+		}
+		var pointCollectionfive = new BMap.PointCollection(pointsfive, optionsfive);  // 初始化PointCollection
+
+		pointCollectionfive.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionssix = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(0,255,216,0.8)'
+		}
+		var pointCollectionsix = new BMap.PointCollection(pointssix, optionssix);  // 初始化PointCollection
+
+		pointCollectionsix.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);	
+		});
+
+		var optionsseven = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(5,255,170,0.8)'
+		}
+		var pointCollectionseven = new BMap.PointCollection(pointsseven, optionsseven);  // 初始化PointCollection
+
+		pointCollectionseven.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionseight = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(1,255,120,0.8)'
+		}
+		var pointCollectioneight = new BMap.PointCollection(pointseight, optionseight);  // 初始化PointCollection
+
+		pointCollectioneight.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionsnine = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(0,255,81,0.8)'
+		}
+		var pointCollectionnine = new BMap.PointCollection(pointsnine, optionsnine);  // 初始化PointCollection
+
+		pointCollectionnine.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionsten = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(0,255,50,0.8)'
+		}
+		var pointCollectionten = new BMap.PointCollection(pointsten, optionsten);  // 初始化PointCollection
+
+		pointCollectionten.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionseleven = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(1,255,0,0.8)'
+		}
+		var pointCollectioneleven = new BMap.PointCollection(pointseleven, optionseleven);  // 初始化PointCollection
+
+		pointCollectioneleven.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionstwelve = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(52,252,6,0.8)'
+		}
+		var pointCollectiontwelve = new BMap.PointCollection(pointstwelve, optionstwelve);  // 初始化PointCollection
+
+		pointCollectiontwelve.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionsthirteen = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(105,253,2,0.8)'
+		}
+		var pointCollectionthirteen = new BMap.PointCollection(pointsthirteen, optionsthirteen);  // 初始化PointCollection
+
+		pointCollectionthirteen.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionsfourteen = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(155,255,3,0.8)'
+		}
+		var pointCollectionfourteen = new BMap.PointCollection(pointsfourteen, optionsfourteen);  // 初始化PointCollection
+
+		pointCollectionfourteen.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+
+		var optionsfifteen = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(207,251,5,0.8)'
+		}
+		var pointCollectionfifteen = new BMap.PointCollection(pointsfifteen, optionsfifteen);  // 初始化PointCollection
+
+		pointCollectionfifteen.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+       
+		var optionssixteen = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(255,255,5,0.8)'
+		}
+		var pointCollectionsixteen = new BMap.PointCollection(pointssixteen, optionssixteen);  // 初始化PointCollection
+		pointCollectionsixteen.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+                 
+		var optionsseventeen = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(255,210,0,0.8)'
+		}
+		var pointCollectionseventeen = new BMap.PointCollection(pointsseventeen, optionsseventeen);  // 初始化PointCollection
+		pointCollectionseventeen.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+         
+		var optionseighteen = {
+			size: BMAP_POINT_SIZE_NORMAL,
+			shape: BMAP_POINT_SHAPE_CIRCLE,
+			color: 'rgba(251,170,4,0.8)'
+		}
+		var pointCollectioneighteen = new BMap.PointCollection(pointseighteen, optionseighteen);  // 初始化PointCollection
+
+		pointCollectioneighteen.addEventListener('click', function (e) 
+		{
+			var Level="";
+			var Frequency="";   
+			for (var i = 0; i < data.data.length; i++) {
+			if(data.data[i][0]==e.point.lng&&data.data[i][1]==e.point.lat){//经度==点击的,维度
+			Level=data.data[i][3];
+			Frequency=data.data[i][2];
+			break;}
+			}
+
+			var point = new BMap.Point(e.point.lng, e.point.lat);
+			var opts = {
+			width: 0, // 信息窗口宽度
+			height: 0, // 信息窗口高度
+			title:"", // 信息窗口标题
+			enableMessage: false,//设置允许信息窗发送短息
+			}
+			var infowindow = new BMap.InfoWindow("Coordinate: "+ e.point.lng + ', ' + e.point.lat + "<br/>Field intensity: " + Level+ "<br/>Frequency: " + Frequency + "MHz", opts);
+			map.openInfoWindow(infowindow, point);
+		});
+  
+		map.addOverlay(pointCollectionzero);
+		map.addOverlay(pointCollectionone);
+		map.addOverlay(pointCollectiontwo);
+		map.addOverlay(pointCollectionthree);
+		map.addOverlay(pointCollectionfour);
+		map.addOverlay(pointCollectionfive);
+		map.addOverlay(pointCollectionsix);
+		map.addOverlay(pointCollectionseven);
+		map.addOverlay(pointCollectioneight);
+		map.addOverlay(pointCollectionnine);
+		map.addOverlay(pointCollectionten);
+		map.addOverlay(pointCollectioneleven);
+		map.addOverlay(pointCollectiontwelve);
+		map.addOverlay(pointCollectionthirteen);
+		map.addOverlay(pointCollectionfourteen);
+		map.addOverlay(pointCollectionfifteen);
+		map.addOverlay(pointCollectionsixteen);
+		map.addOverlay(pointCollectionseventeen);
+		map.addOverlay(pointCollectioneighteen);
+		
+    } else {
+        alert('请在chrome、safari、IE8+以上浏览器查看本示例');
+    }
+</script>
