@@ -3,18 +3,11 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>http://zxnie.github.io/posts/hello-world/</loc>
-    <lastmod>2018-10-07T12:37:09-04:00</lastmod>
+    <loc>http://zxnie.github.io/</loc>
   </url>
   
   <url>
     <loc>http://zxnie.github.io/categories/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://zxnie.github.io/posts/</loc>
-    <lastmod>2018-10-07T12:37:09-04:00</lastmod>
     <priority>0</priority>
   </url>
   
@@ -30,12 +23,6 @@
   
   <url>
     <loc>http://zxnie.github.io/zixiang-nie/</loc>
-    <priority>0</priority>
-  </url>
-  
-  <url>
-    <loc>http://zxnie.github.io/</loc>
-    <lastmod>2018-10-07T12:37:09-04:00</lastmod>
     <priority>0</priority>
   </url>
   
