@@ -2,6 +2,7 @@
 <html>
 
 <head>
+  <meta http-equiv="refresh" content="5">
   <style>
     /* Set the size of the div element that contains the map */
     #map {
@@ -46,7 +47,7 @@
         var alert = parseFloat(obj.feeds[0].field3);
         document.getElementById("location").innerHTML = lati + ", " + long;
         // The location of user
-        var user = {lat: lati, lng: long};
+        var user = { lat: lati, lng: long };
         // user['lat'] = lati;
         // user['lng'] = long;
         // The map, centered at user
