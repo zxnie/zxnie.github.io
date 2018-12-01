@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <style>
+    /* Set the size of the div element that contains the map */
+    #map {
+      height: 400px;
+      /* The height */
+      width: 100%;
+      /* The width is the width of the web page */
+    }
+
+    #alert {
+      font-size: 50px;
+      color: red;
+    }
+  </style>
+</head>
+
+<body>
+  <h1>Smart Stick Tracking Dash</h1>
+  <!--The div element for the map -->
+  <div id="map"></div>
+  <h3>Thingspeak response:</h3>
+  <div id="status"></div>
+  <h3>The user is at:</h3>
+  <div id="location"></div>
+  <div id="alert"></div>
+  <script>
+    // Initialize and add the map
+    function initMap() {
+      // Get location from thingspeak
+      const Http = new XMLHttpRequest();
+      const url = 'https://api.thingspeak.com/channels/641773/feeds.json?results=1';
+      Http.open('GET', url);
+      Http.send();
+      Http.onreadystatechange = function () {
+        if (Http.status == 200) {
+          document.getElementById("status").innerHTML = 'Success!';
+        }
+        var text = Http.responseText
+        var obj = JSON.parse(text);
+        var lati = parseFloat(obj.feeds[0].field1);
+        var long = parseFloat(obj.feeds[0].field2);
+        var alert = parseFloat(obj.feeds[0].field3);
+        document.getElementById("location").innerHTML = lati + ", " + long;
+        // The location of user
+        var user = {lat: lati, lng: long};
+        // user['lat'] = lati;
+        // user['lng'] = long;
+        // The map, centered at user
+        var map = new google.maps.Map(
+          document.getElementById('map'), { zoom: 16, center: user });
+        // The marker, positioned at user
+        var marker = new google.maps.Marker({ position: user, map: map });
+        if (alert == 1) {
+          document.getElementById("alert").innerHTML = "Emergency Alert!";
+        };
+      };
+    }
+  </script>
+  <!--Load the API from the specified URL
+    * The async attribute allows the browser to render the page while the API loads
+    * The key parameter will contain your own API key (which is not needed for this tutorial)
+    * The callback parameter executes the initMap() function
+    -->
+  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB6e2liaXSoVJTApP-42u-9bEkiUdyoX_g&callback=initMap">
+  </script>
+</body>
+
+</html>
