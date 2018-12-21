@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>Zixiang&#39;s Homepage</title>
-    <link>http://zxnie.github.io/</link>
-    <description>Recent content on Zixiang&#39;s Homepage</description>
+    <title>SDN on Zixiang&#39;s Homepage</title>
+    <link>http://zxnie.github.io/tags/sdn/</link>
+    <description>Recent content in SDN on Zixiang&#39;s Homepage</description>
     <generator>Hugo -- gohugo.io</generator>
     <lastBuildDate>Thu, 20 Dec 2018 14:41:17 -0500</lastBuildDate>
     
-	<atom:link href="http://zxnie.github.io/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="http://zxnie.github.io/tags/sdn/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
@@ -19,15 +19,6 @@
       <description>Introduction This is a write-up of my course project for EEL6871: Software-defined Systems, Fall 2018.
 This work is based on Varadharajan, Vijay, et al. &amp;ldquo;A Policy based Security Architecture for Software Defined Networks.&amp;rdquo; arXiv preprint arXiv:1806.02053 (2018). The project aiming to reproduce the work in the above paper and discuss how the security policies impact software-defined networking (referred as “SDN” in the rest part).
 Policy based security architecture is wildly used in the conventional network: most firewalls following a set of policies to filter the flows going through.</description>
-    </item>
-    
-    <item>
-      <title>Smart Stick Dash</title>
-      <link>http://zxnie.github.io/posts/smart-stick-dash/</link>
-      <pubDate>Sat, 01 Dec 2018 13:41:03 -0500</pubDate>
-      
-      <guid>http://zxnie.github.io/posts/smart-stick-dash/</guid>
-      <description>Smart Stick Dash</description>
     </item>
     
   </channel>

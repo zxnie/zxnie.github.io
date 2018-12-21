@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang='en'><head>
+  <meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'>
+<meta name='description' content='Introduction This is a write-up of my course project for EEL6871: Software-defined Systems, Fall 2018.
+This work is based on Varadharajan, Vijay, et al. &ldquo;A Policy based Security Architecture for Software Defined Networks.&rdquo; arXiv preprint arXiv:1806.02053 (2018). The project aiming to reproduce the work in the above paper and discuss how the security policies impact software-defined networking (referred as “SDN” in the rest part).
+Policy based security architecture is wildly used in the conventional network: most firewalls following a set of policies to filter the flows going through.'>
+<meta name='theme-color' content='#0078d7'>
+
+<meta property='og:title' content='Perform DoS attacks on Software-defined Networking with mininet and ONOS • Zixiang&#39;s Homepage'>
+<meta property='og:description' content='Introduction This is a write-up of my course project for EEL6871: Software-defined Systems, Fall 2018.
+This work is based on Varadharajan, Vijay, et al. &ldquo;A Policy based Security Architecture for Software Defined Networks.&rdquo; arXiv preprint arXiv:1806.02053 (2018). The project aiming to reproduce the work in the above paper and discuss how the security policies impact software-defined networking (referred as “SDN” in the rest part).
+Policy based security architecture is wildly used in the conventional network: most firewalls following a set of policies to filter the flows going through.'>
+<meta property='og:url' content='http://zxnie.github.io/posts/ddos-on-sdn/'>
+<meta property='og:site_name' content='Zixiang&#39;s Homepage'>
+<meta property='og:type' content='article'><meta property='article:section' content='posts'><meta property='article:tag' content='SDN'><meta property='article:tag' content='Security'><meta property='article:tag' content='DoS'><meta property='article:published_time' content='2018-12-20T14:41:17-05:00'/><meta property='article:modified_time' content='2018-12-20T14:41:17-05:00'/><meta name='twitter:card' content='summary'>
+
+<meta name="generator" content="Hugo 0.52" />
+
+  <title>Perform DoS attacks on Software-defined Networking with mininet and ONOS • Zixiang&#39;s Homepage</title>
+  <link rel='canonical' href='http://zxnie.github.io/posts/ddos-on-sdn/'>
+  
+  
+  <link rel='icon' href='/favicon.ico'>
+<link rel='stylesheet' href='/assets/css/main.4a10984a.css'><link rel='stylesheet' href='/css/custom.css'><style>
+:root{--color-accent:#0078d7;}
+</style>
+
+  
+
+</head>
+<body class='page type-posts has-sidebar'>
+
+  <div class='site'><div id='sidebar' class='sidebar'>
+  <a class='screen-reader-text' href='#main-menu'>Skip to Main Menu</a>
+
+  <div class='container'><section class='widget widget-about sep-after'>
+  <header>
+    
+    <div class='logo'>
+      <a href='/'>
+        <img src='/images/logo.png'>
+      </a>
+    </div>
+    
+    <h2 class='title site-title '>
+    Zixiang&#39;s Homepage
+    </h2>
+    <div class='desc'>
+    Electrical and Computer Engineer
+    </div>
+  </header>
+
+</section>
+<section class='widget widget-search sep-after'>
+  <header>
+    <h4 class='title widget-title'>Search</h4>
+  </header>
+
+  <form action='/search' id='search-form' class='search-form'>
+    <label>
+      <span class='screen-reader-text'>Search</span>
+      <input id='search-term' class='search-term' type='search' name='q' placeholder='Search&hellip;'>
+    </label></form>
+
+</section>
+<section class='widget widget-taxonomy_cloud sep-after'>
+  <header>
+    <h4 class='title widget-title'>Tags</h4>
+  </header>
+
+  <div class='container list-container'>
+  <ul class='list taxonomy-cloud'><li>
+        <a href='/tags/dos/' style='font-size:1em'>DoS</a>
+      </li><li>
+        <a href='/tags/sdn/' style='font-size:1em'>SDN</a>
+      </li><li>
+        <a href='/tags/security/' style='font-size:1em'>Security</a>
+      </li></ul>
+</div>
+
+
+</section>
+</div>
+
+  <div class='sidebar-overlay'></div>
+</div><div class='main'><nav id='main-menu' class='menu main-menu' aria-label='Main Menu'>
+  <div class='container'>
+    <a class='screen-reader-text' href='#content'>Skip to Content</a>
+
+<button id='sidebar-toggler' class='sidebar-toggler' aria-controls='sidebar'>
+  <span class='screen-reader-text'>Toggle Sidebar</span>
+  <span class='open'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="3" y1="12" x2="21" y2="12" />
+  <line x1="3" y1="6" x2="21" y2="6" />
+  <line x1="3" y1="18" x2="21" y2="18" />
+  
+</svg>
+</span>
+  <span class='close'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="18" y1="6" x2="6" y2="18" />
+  <line x1="6" y1="6" x2="18" y2="18" />
+  
+</svg>
+</span>
+</button>
+    <ul><li class='item'>
+        <a href='https://zxnie.github.io'>Home</a>
+      </li><li class='item'>
+        <a href='https://github.com/zxnie'>Repo</a>
+      </li></ul>
+  </div>
+</nav><div class='header-widgets'>
+        <div class='container'></div>
+      </div>
+
+      <header id='header' class='header site-header'>
+        <div class='container sep-after'>
+          <div class='header-info'><p class='site-title title'>Zixiang&#39;s Homepage</p><p class='desc site-desc'>Electrical and Computer Engineer</p>
+          </div>
+        </div>
+      </header>
+
+      <main id='content'>
+
+
+<article lang='en' class='entry'>
+  <header class='header entry-header'>
+  <div class='container sep-after'>
+    <div class='header-info'>
+      <h1 class='title'>Perform DoS attacks on Software-defined Networking with mininet and ONOS</h1>
+      
+
+    </div>
+    <div class='entry-meta'>
+  <span class='posted-on'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/>
+  <line x1="16" y1="2" x2="16" y2="6"/>
+  <line x1="8" y1="2" x2="8" y2="6"/>
+  <line x1="3" y1="10" x2="21" y2="10"/>
+  
+</svg>
+<span class='screen-reader-text'>Posted on </span>
+  <time class='entry-date' datetime='2018-12-20T14:41:17-05:00'>2018, Dec 20</time>
+</span>
+
+  
+  
+<span class='reading-time'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <circle cx="12" cy="12" r="10"/>
+  <polyline points="12 6 12 12 15 15"/>
+  
+</svg>
+8 mins read
+</span>
+
+
+</div>
+
+
+  </div>
+</header>
+
+  
+  
+
+  <div class='container entry-content'>
+  
+
+<h3 id="introduction">Introduction</h3>
+
+<p>This is a write-up of my course project for EEL6871: Software-defined Systems, Fall 2018.</p>
+
+<p>This work is based on Varadharajan, Vijay, et al. &ldquo;A Policy based Security Architecture for Software Defined Networks.&rdquo; arXiv preprint arXiv:1806.02053 (2018).
+The project aiming to reproduce the work in the above paper and discuss how the security policies impact software-defined networking (referred as “SDN” in the rest part).</p>
+
+<p>Policy based security architecture is wildly used in the conventional network: most firewalls following a set of policies to filter the flows going through. SDN, separating the control plane from the data plane, provides new, centralized ways to provide basic networking services such as routing. At the same time, it allows a more flexible topology control, access control or multi-path. However, the security and dependability of the SDN itself is still an open issue. Paper [1] illustrated some SDN specific vulnerabilities. Since the policy-based security architecture is effective in common traditional scenarios, the above paper, and this work utilizes similar methodology, implement policy enforcer in SDN. The result shows that this work get the similar conclusion and policy based SDN security architecture have flaws in security as it stands.</p>
+
+<p>All the codes are available here: <a href="https://github.com/zxnie/course_projects/tree/eel6871fall2018" target="_blank">Github repo</a>.</p>
+
+<h3 id="implementation-details">Implementation details</h3>
+
+<p><img src="/images/2018-12-20_145649.png" alt="System Architecture" height="200"><br />
+Fig. 1 System architecture</p>
+
+<p>As shown in Fig. 1 above, in my implementation I used ONOS (an SDN controller OS designed for high availability, performance, scale-out.), mininet (an SDN emulator, emulates a complete network of hosts, links, and switches on a single machine.) and sFlow-RT (a tool delivering real-time visibility to Software Defined Networking (SDN), DevOps and Orchestration stacks and enabling new classes of performance aware application such as load balancing, DDoS mitigation and workload placement). ONOS and sFlow-RT have REST API (APIs that could be accessed through HTTP GET and POST method) could be used to setup and delete flow rules, set threshold and trigger some actions. Therefore, I coded with python to load policies from a JSON file and call REST APIs in ONOS and javascript on top of sFlow-RT to enforce the policies. In addition, tshark is used for capture control packets for analysis.</p>
+
+<h3 id="environment-setup">Environment Setup</h3>
+
+<p>Before we start perfroming an attack, we need to:</p>
+
+<ul>
+<li>Get a VM with Ubuntu (I used 18.04)</li>
+<li>Install mininet (<a href="https://github.com/mininet/mininet/blob/master/INSTALL" title="Mininet Official Github repo." target="_blank">Tutorial</a>), ONOS (<a href="https://wiki.onosproject.org/display/ONOS/Developer+Quick+Start" title="ONOS Developer Quick Start." target="_blank">Tutorial</a>, you may also need <a href="https://docs.bazel.build/versions/master/install-ubuntu.html" target="_blank">Google bazel</a> to build ONOS code.), sFlow-rt (<a href="https://sflow-rt.com/download.php" title="sFlow-rt Official  website." target="_blank">Tutorial</a>, and we also need a app on top of sFlow-rt: <a href="https://github.com/sflow-rt/mininet-dashboard" title="mininet dash Github repo." target="_blank">mininet dash</a>).<br />
+After install all of them, we want to test if everything are working well.<br /></li>
+<li>I assume ONOS is in ~/onos, sFlow-rt is in ~/sflow-rt. In <strong>terminal 1</strong><br />
+<code>$ cd onos</code><br />
+<code>$ export ONOS_ROOT=$(pwd)</code><br />
+<code>$ bazel run onos-local -- clean</code><br />
+This will start ONOS and will take like 1 minute.<br /></li>
+<li>Open a new <strong>terminal 2</strong>:<br />
+<code>$ cd onos</code><br />
+<code>$ tools/test/bin/onos localhost</code><br />
+This will start the ONOS CLI, inside the CLI:<br />
+<code>$ ONOS &gt; app activate org.onosproject.openflow</code><br />
+<code>$ ONOS &gt; app activate org.onosproject.fwd</code><br />
+This will activate the Openflow and forward service of ONOS.<br /></li>
+<li>Open a new <strong>terminal 3</strong>:<br />
+<code>$ cd sflow-rt</code><br />
+Put the tcp.js and udp.js inside this folder.<br />
+<code>$ env RTPROP=-Dscript.file=tcp.js ./start.sh</code><br />
+Here, tcp.js is a sFlow-rt application that could mitigate TCP SYN flood, we can substitute tcp.js with udp.js, which could mitigate UDP flood.<br /></li>
+<li>Open a new <strong>terminal 4</strong>:<br />
+<code>$ sudo mn --custom ~/sflow-rt/extras/sflow.py --controller remote --topo linear,10</code><br />
+This will start mininet to emualte a linear topology with 10 switches and 10 hosts, remoted controlled by ONOS, sideloaded with sFlow-rt.<br />
+If everything are installed correctly, we can get mininet run like this:<br />
+<img src="/images/2018-12-20_mininet.png" alt="mininet screenshot" height="200"><br />
+Open a web browser, open ONOS web UI: <a href="http://localhost:8181/onos/ui" target="_blank">http://localhost:8181/onos/ui</a>, login as &ldquo;onos&rdquo; with password &ldquo;rocks&rdquo;, we&rsquo;ll be able to see this:<br />
+<img src="/images/2018-12-20_onos.png" alt="onos screenshot" height="200"><br />
+It shows only swiches.<br />
+In the browser, open <a href="http://localhost:8008/app/mininet-dashboard/html/?tab=1" target="_blank">http://localhost:8008/app/mininet-dashboard/html/?tab=1</a>, we&rsquo;ll be able to see this:<br />
+<img src="/images/2018-12-20_sflow-rt.png" alt="sflow-rt screenshot" height="200"><br />
+Then, we finished setting up the environment, we&rsquo;re good to dig in the security part.<br /></li>
+</ul>
+
+<h3 id="compile-flow-rules">Compile flow rules</h3>
+
+<p>ONOS does support customizing flow rules through REST API. We can access the REST API documentation in this url: <a href="http://localhost:8181/onos/v1/docs/" target="_blank">http://localhost:8181/onos/v1/docs/</a><br />
+<img src="/images/2018-12-20_onos_api.png" alt="onos rest api" height="200"><br />
+ONOS applications could access REST API through HTTP GET and POST methods.
+When applying flow rules to ONOS, the body of POST method is expected to be a json formated content like this:<br />
+<img src="/images/2018-12-20_json.png" alt="onos rest api" height="200"><br />
+Here I left blank in the &ldquo;treatment&rdquo; array, which means &ldquo;do nothing&rdquo;, that is, drop.
+When generating the policy expressions, I referenced the online document from Incapsula <a href="https://www.incapsula.com/blog/security-glossary-top-12-ddos-attack-types-need-know.html" target="_blank">2</a>, <a href="https://www.incapsula.com/ddos/ddos-attacks.html" target="_blank">3</a>. I considered following common attack method:</p>
+
+<ol>
+<li><p><strong>DNS Amplification</strong> – In this attack, a perpetrator starts with small queries that use the spoofed IP address of the intended victim. Exploiting vulnerabilities on publicly-accessible domain name system (DNS) servers, the DNS request responses inflate into much larger UDP packet payloads and overwhelm the targeted servers.<br />
+PE1 – PE4 are then generated to guard against DNS amplification through Google public DNS and OpenDNS.</p>
+
+<p><em>PE1. Block DNS response from Google 1 (8.8.8.8) through port 53.</em><br />
+<em>PE2. Block DNS response from Google 2 (8.8.4.4) through port 53.</em><br />
+<em>PE3. Block DNS response from OpenDNS 2 (208.67.220.220) through port 53.</em><br />
+<em>PE4. Block DNS response from OpenDNS 1 (208.67.222.222) through port 53.</em></p></li>
+
+<li><p><strong>UDP Flood</strong> – In this attack, the perpetrator uses UDP datagram–containing IP packets to deluge random ports on a target network. The victimized system attempts to match each datagram with an application, but fails. The system soon becomes overwhelmed as it tries to handle the UDP packet reply volume.<br />
+PE5 then generated using threshold to block large UDP flows from same source IP to same destination IP.</p>
+
+<p><em>PE5. Threshold: 100 requests in 1 second, hold for 10seconds, IP protocol 17.</em></p></li>
+
+<li><p><strong>DNS Flood</strong> – Similar to a UDP flood, this attack involves perpetrators using mass amounts of UDP packets to exhaust server side resources. Here, however, the target is DNS servers and their cache mechanisms, with the goal being to prevent the redirection of legitimate incoming requests to DNS zone resources.<br />
+PE6 then generated to block specific IP sending too much ICMP requests.</p>
+
+<p><em>PE6. Threshold: 100 requests in 1 second, hold for 10 seconds, IP protocol 1, source UDP port 53.</em></p></li>
+
+<li><p><strong>NTP Amplification</strong> – Internet-connected devices use network time protocol (NTP) servers for clock synchronization. Similar to a DNS amplification assault, here a perpetrator uses a number of NTP servers to overburden a target with user datagram protocol (UDP) traffic.<br />
+Since clock synchronization may not necessarily needed in the network (actually UF network has block this protocol), I block any packet from source port 123.</p>
+
+<p><em>PE7. Block traffic from port 123.</em></p></li>
+
+<li><p><strong>Ping Flood</strong> – Another common flood-type of attack that uses any number of ICMP echo requests, or pings, to overload the victim’s network. For each ping sent, a reciprocal one containing the same number of packets is supposed to be returned. The targeted system attempts to respond to the countless requests, eventually clogging its own network bandwidth.</p>
+
+<p>PE6 could migrate this kind of attack.</p></li>
+
+<li><p><strong>SYN Flood</strong> – Every TCP session requires a three-way handshake between the two systems involved. Using a SYN flood, an attacker rapidly hits the target with so many connection requests that it cannot keep up, leading to network saturation.<br />
+PE8 is then generated using threshold to block large TCP flows from same source IP to same destination IP.</p>
+
+<p><em>PE8. Threshold: 100 requests in 1 second, hold for 10 seconds, IP protocol 6.</em></p></li>
+</ol>
+
+<p>I put above rules in rules.json, I assume that host2 (h2, 10.0.0.2) is the victim. After we started ONOS and mininet, we could apply those rules by:<br />
+<code>$ python3 policy.py</code><br />
+This will apply all the policies to all mininet switches. Here, we actually could only apply those rules to switch 2 (directly connected to host2, 10.0.0.2) since we are using linear topology. The only different is where the malicious packets are going to be dropped. As I did we apply all those policies to all switches, the malicious packets are going to be dropped by the first switch in SDN it comes through. If we only apply the policies to switch 2, those malicious packets could be forwarded in the SDN and finally dropped by switch 2.</p>
+
+<h3 id="perform-an-attack">Perform an attack</h3>
+
+<p>hping3 is a common tool to perfrom a flood attack:<br />
+In miminet CLI:
+For TCP SYN Flood:<br />
+<code>h1 hping3 -S --flood -p 80 10.0.0.2</code><br />
+For UDP Flood:<br />
+<code>h1 hping3 --flood --udp -k -s 53 10.0.0.2</code><br />
+Here the attacker is inside the SDN: host 1 (with IP 10.0.0.1), and we can substitute h1 with any host (for h2, it doesn&rsquo;t make sense, but we can still try it.).<br />
+Then we can monitor the flows from mininet dashboard and see how the flow rules mitigate the attack. Here is a video for this:</p>
+
+<iframe src="https://onedrive.live.com/embed?cid=743C20BF0D23F539&resid=743C20BF0D23F539%2116651&authkey=AE5feNmXQFlQ-Ak" width="320" height="240" frameborder="0" scrolling="no" allowfullscreen></iframe>
+
+<h3 id="a-little-conclusion">A little conclusion</h3>
+
+<p>Unlike attacking traditional networks, attacking SDN may have additional consequences. If the SDN have a effective, well-considered security scheme in controller, the controller may have to handle all the attacking packets and end up running out of resources. And that&rsquo;s why people are considering building an extra &ldquo;department of security&rdquo; for SDN like paper[2] is trying to achieve.</p>
+
+<h3 id="references">References:</h3>
+
+<p>[1]. Kreutz, Diego, Fernando Ramos, and Paulo Verissimo. &ldquo;Towards secure and dependable software-defined networks.&rdquo; Proceedings of the second ACM SIGCOMM workshop on Hot topics in software defined networking. ACM, 2013.<br />
+[2]. Kreutz, Diego, et al. &ldquo;ANCHOR: logically-centralized security for Software-Defined Networks.&rdquo; arXiv preprint arXiv:1711.03636 (2017).</p>
+
+</div>
+
+  
+<footer class='entry-footer'>
+  <div class='container sep-before'><div class='tags'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M20.59,13.41l-7.17,7.17a2,2,0,0,1-2.83,0L2,12V2H12l8.59,8.59A2,2,0,0,1,20.59,13.41Z"/>
+  <line x1="7" y1="7" x2="7" y2="7"/>
+  
+</svg>
+<span class='screen-reader-text'>Tags: </span><a class='tag' href='/tags/sdn/'>SDN</a>, <a class='tag' href='/tags/security/'>Security</a>, <a class='tag' href='/tags/dos/'>DoS</a></div>
+
+  </div>
+</footer>
+
+
+</article>
+
+<nav class='entry-nav'>
+  <div class='container'><div class='prev-entry sep-before'>
+      <a href='/posts/smart-stick-dash/'>
+        <span aria-hidden='true'><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <line x1="20" y1="12" x2="4" y2="12"/>
+  <polyline points="10 18 4 12 10 6"/>
+  
+</svg>
+ Previous</span>
+        <span class='screen-reader-text'>Previous post: </span>Smart Stick Dash</a>
+    </div></div>
+</nav>
+
+
+
+
+      </main>
+
+      <footer id='footer' class='footer'>
+        <div class='container sep-before'><section class='widget widget-social_menu sep-after'><nav aria-label='Social Menu'>
+    <ul><li>
+        <a href='https://github.com/zxnie' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Open Github account in new tab</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+  
+</svg>
+</a>
+      </li><li>
+        <a href='mailto:nzx93116@hotmail.com' target='_blank' rel='noopener'>
+          <span class='screen-reader-text'>Contact via Email</span><svg class='icon' viewbox='0 0 24 24' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' aria-hidden='true'>
+  
+  <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+  <polyline points="22,6 12,13 2,6"/>
+  
+</svg>
+</a>
+      </li></ul>
+  </nav>
+</section><div class='copyright'>
+  <p> &copy; 2016-2018 Zixiang Nie </p>
+</div>
+
+        </div>
+      </footer>
+
+    </div>
+  </div><script>window.__public_path__='\/assets\/js\/'</script>
+
+<script src='/assets/js/main.fae8ed32.js'></script><script src='/js/custom.js'></script>
+
+</body>
+
+</html>
+
