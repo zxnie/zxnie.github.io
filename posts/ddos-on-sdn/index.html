@@ -184,7 +184,7 @@ The project aiming to reproduce the work in the above paper and discuss how the 
 
 <h3 id="implementation-details">Implementation details</h3>
 
-<p><img src="/images/2018-12-20_145649.png" alt="System Architecture" height="200"><br />
+<p><img src="/images/2018-12-20_145649.png" alt="System Architecture" style="height:350px;"><br />
 Fig. 1 System architecture</p>
 
 <p>As shown in Fig. 1 above, in my implementation I used ONOS (an SDN controller OS designed for high availability, performance, scale-out.), mininet (an SDN emulator, emulates a complete network of hosts, links, and switches on a single machine.) and sFlow-RT (a tool delivering real-time visibility to Software Defined Networking (SDN), DevOps and Orchestration stacks and enabling new classes of performance aware application such as load balancing, DDoS mitigation and workload placement). ONOS and sFlow-RT have REST API (APIs that could be accessed through HTTP GET and POST method) could be used to setup and delete flow rules, set threshold and trigger some actions. Therefore, I coded with python to load policies from a JSON file and call REST APIs in ONOS and javascript on top of sFlow-RT to enforce the policies. In addition, tshark is used for capture control packets for analysis.</p>
@@ -218,22 +218,22 @@ Here, tcp.js is a sFlow-rt application that could mitigate TCP SYN flood, we can
 <code>$ sudo mn --custom ~/sflow-rt/extras/sflow.py --controller remote --topo linear,10</code><br />
 This will start mininet to emualte a linear topology with 10 switches and 10 hosts, remoted controlled by ONOS, sideloaded with sFlow-rt.<br />
 If everything are installed correctly, we can get mininet run like this:<br />
-<img src="/images/2018-12-20_mininet.png" alt="mininet screenshot" height="200"><br />
+<img src="/images/2018-12-20_mininet.png" alt="mininet screenshot" style="width:500px;"><br />
 Open a web browser, open ONOS web UI: <a href="http://localhost:8181/onos/ui" target="_blank">http://localhost:8181/onos/ui</a>, login as &ldquo;onos&rdquo; with password &ldquo;rocks&rdquo;, we&rsquo;ll be able to see this:<br />
-<img src="/images/2018-12-20_onos.png" alt="onos screenshot" height="200"><br />
+<img src="/images/2018-12-20_onos.png" alt="onos screenshot" style="width:500px;"><br />
 It shows only swiches.<br />
 In the browser, open <a href="http://localhost:8008/app/mininet-dashboard/html/?tab=1" target="_blank">http://localhost:8008/app/mininet-dashboard/html/?tab=1</a>, we&rsquo;ll be able to see this:<br />
-<img src="/images/2018-12-20_sflow-rt.png" alt="sflow-rt screenshot" height="200"><br />
+<img src="/images/2018-12-20_sflow-rt.png" alt="sflow-rt screenshot" style="width:500px;"><br />
 Then, we finished setting up the environment, we&rsquo;re good to dig in the security part.<br /></li>
 </ul>
 
 <h3 id="compile-flow-rules">Compile flow rules</h3>
 
 <p>ONOS does support customizing flow rules through REST API. We can access the REST API documentation in this url: <a href="http://localhost:8181/onos/v1/docs/" target="_blank">http://localhost:8181/onos/v1/docs/</a><br />
-<img src="/images/2018-12-20_onos_api.png" alt="onos rest api" height="200"><br />
+<img src="/images/2018-12-20_onos_api.png" alt="onos rest api" style="width:500px;"><br />
 ONOS applications could access REST API through HTTP GET and POST methods.
 When applying flow rules to ONOS, the body of POST method is expected to be a json formated content like this:<br />
-<img src="/images/2018-12-20_json.png" alt="onos rest api" height="200"><br />
+<img src="/images/2018-12-20_json.png" alt="onos rest api" style="height:300px;"><br />
 Here I left blank in the &ldquo;treatment&rdquo; array, which means &ldquo;do nothing&rdquo;, that is, drop.
 When generating the policy expressions, I referenced the online document from Incapsula <a href="https://www.incapsula.com/blog/security-glossary-top-12-ddos-attack-types-need-know.html" target="_blank">2</a>, <a href="https://www.incapsula.com/ddos/ddos-attacks.html" target="_blank">3</a>. I considered following common attack method:</p>
 
@@ -286,7 +286,7 @@ For UDP Flood:<br />
 Here the attacker is inside the SDN: host 1 (with IP 10.0.0.1), and we can substitute h1 with any host (for h2, it doesn&rsquo;t make sense, but we can still try it.).<br />
 Then we can monitor the flows from mininet dashboard and see how the flow rules mitigate the attack. Here is a video for this:</p>
 
-<iframe src="https://onedrive.live.com/embed?cid=743C20BF0D23F539&resid=743C20BF0D23F539%2116651&authkey=AE5feNmXQFlQ-Ak" width="320" height="240" frameborder="0" scrolling="no" allowfullscreen></iframe>
+<iframe src="https://onedrive.live.com/embed?cid=743C20BF0D23F539&resid=743C20BF0D23F539%2116651&authkey=AE5feNmXQFlQ-Ak" width="480" height="360" frameborder="0" scrolling="no" allowfullscreen></iframe>
 
 <h3 id="a-little-conclusion">A little conclusion</h3>
 
