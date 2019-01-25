@@ -5,10 +5,28 @@
     <link>http://zxnie.github.io/tags/</link>
     <description>Recent content in Tags on Zixiang&#39;s Homepage</description>
     <generator>Hugo -- gohugo.io</generator>
-    <lastBuildDate>Thu, 20 Dec 2018 14:41:17 -0500</lastBuildDate>
+    <lastBuildDate>Wed, 23 Jan 2019 14:30:29 -0500</lastBuildDate>
     
 	<atom:link href="http://zxnie.github.io/tags/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>Cellular</title>
+      <link>http://zxnie.github.io/tags/cellular/</link>
+      <pubDate>Wed, 23 Jan 2019 14:30:29 -0500</pubDate>
+      
+      <guid>http://zxnie.github.io/tags/cellular/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>D2D</title>
+      <link>http://zxnie.github.io/tags/d2d/</link>
+      <pubDate>Wed, 23 Jan 2019 14:30:29 -0500</pubDate>
+      
+      <guid>http://zxnie.github.io/tags/d2d/</guid>
+      <description></description>
+    </item>
     
     <item>
       <title>DoS</title>
@@ -16,6 +34,15 @@
       <pubDate>Thu, 20 Dec 2018 14:41:17 -0500</pubDate>
       
       <guid>http://zxnie.github.io/tags/dos/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>MATLAB</title>
+      <link>http://zxnie.github.io/tags/matlab/</link>
+      <pubDate>Wed, 23 Jan 2019 14:30:29 -0500</pubDate>
+      
+      <guid>http://zxnie.github.io/tags/matlab/</guid>
       <description></description>
     </item>
     
@@ -34,6 +61,15 @@
       <pubDate>Thu, 20 Dec 2018 14:41:17 -0500</pubDate>
       
       <guid>http://zxnie.github.io/tags/security/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Wireless communications</title>
+      <link>http://zxnie.github.io/tags/wireless-communications/</link>
+      <pubDate>Wed, 23 Jan 2019 14:30:29 -0500</pubDate>
+      
+      <guid>http://zxnie.github.io/tags/wireless-communications/</guid>
       <description></description>
     </item>
     
