@@ -20,27 +20,6 @@
     </item>
     
     <item>
-      <title>Simulate inband device-to-device communications underlay with cellular network with MATLAB</title>
-      <link>http://zxnie.github.io/posts/d2d-pairing/</link>
-      <pubDate>Wed, 23 Jan 2019 14:30:29 -0500</pubDate>
-      
-      <guid>http://zxnie.github.io/posts/d2d-pairing/</guid>
-      <description>Introduction This is a write-up of my course project for EEL6509: Wireless Communications, Fall 2018.
-Device-to-Device (D2D) communication was initially proposed in cellular networks as a new paradigm to improve network performance. The emergence of new services such as content distribution and location-aware advertisement introduced new use cases for D2D communications in cellular networks. The initial studies showed that D2D communication has advantages such as increasing spectrum efﬁciency and reducing communication delay.</description>
-    </item>
-    
-    <item>
-      <title>Perform DoS attacks on Software-defined Networking with mininet and ONOS</title>
-      <link>http://zxnie.github.io/posts/ddos-on-sdn/</link>
-      <pubDate>Thu, 20 Dec 2018 14:41:17 -0500</pubDate>
-      
-      <guid>http://zxnie.github.io/posts/ddos-on-sdn/</guid>
-      <description>Introduction This is a write-up of my course project for EEL6871: Software-defined Systems, Fall 2018.
-This work is based on Varadharajan, Vijay, et al. &amp;ldquo;A Policy based Security Architecture for Software Defined Networks.&amp;rdquo; arXiv preprint arXiv:1806.02053 (2018). The project aiming to reproduce the work in the above paper and discuss how the security policies impact software-defined networking (referred as “SDN” in the rest part).
-Policy based security architecture is wildly used in the conventional network: most firewalls following a set of policies to filter the flows going through.</description>
-    </item>
-    
-    <item>
       <title>Smart Stick Dash</title>
       <link>http://zxnie.github.io/posts/smart-stick-dash/</link>
       <pubDate>Sat, 01 Dec 2018 13:41:03 -0500</pubDate>
